@@ -29,7 +29,7 @@ public class WordCounter implements Runnable{ //make it executable with threads
             try (BufferedReader br = new BufferedReader( new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = br.readLine()) != null) {
-                    String[] words = line.toLowerCase().split("\\W+"); //there's probably a more effective regex
+                    String[] words = line.toLowerCase().split("[^a-zåäö']+"); //there's probably a more effective regex
                     for (String word : words) {
                         if (!word.isEmpty()) {
                             this.wordCounts.merge(word, 1, Integer::sum);
